@@ -67,8 +67,26 @@ def matrix():
     m[1].append(6)
     return m
 
+def matrix2():
+    m=[]
+    m.append([])
+    m[0].append(1)
+    m[0].append(2)
+    m.append([])
+    m[1].append(3)
+    m[1].append(4)
+    m.append([])
+    m[2].append(5)
+    m[2].append(6)
+    #m.append([1 2])
+    #m.append([3 4])
+    #m.append([5 6])
+    return m
+
 a=matrix()
 print_matrix(a)
 #n=new_matrix()
+n2=matrix2()
 #print_matrix(n)
 print print_matrix(ident(a))
+print print_matrix(matrix_mult(n2,n))

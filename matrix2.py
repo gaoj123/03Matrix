@@ -34,8 +34,15 @@ def matrix_mult( m1, m2 ):
         m2Copy.append([])
         for c in range(len(m2[0])):
             m2Copy[r].append(m2[r][c])
-    numRows=len(m1)
-    numCols=len(m2[0])
+    numRows=len(m1[0])
+    numCols=len(m2)
+    sumT=0
+    for c in range(numCols):
+        for r in range(numRows):
+            for k in range(len(m2[0])):
+                sumT+=m1[r][k]*m2Copy[k][c]
+            m2[c][r]=sumT
+            sumT=0
     #NOT FINISHED
 
     

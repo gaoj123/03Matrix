@@ -36,14 +36,13 @@ def matrix_mult( m1, m2 ):
             m2Copy[r].append(m2[r][c])
     numRows=len(m1[0])
     numCols=len(m2)
-    sumT=0
+    result=new_matrix(numRows, numCols)
     for c in range(numCols):
         for r in range(numRows):
             for k in range(len(m2[0])):
-                sumT+=m1[r][k]*m2Copy[k][c]
-            m2[c][r]=sumT
-            sumT=0
-    #NOT FINISHED
+                result[c][r]+=m1[k][r]*m2Copy[c][k]
+    m2=result
+    return m2
 
     
 #Creates matrix with 4 rows and 4 cols
@@ -85,8 +84,8 @@ def matrix2():
 
 a=matrix()
 print_matrix(a)
-#n=new_matrix()
+n=matrix()
 n2=matrix2()
-#print_matrix(n)
-print print_matrix(ident(a))
+print_matrix(n2)
+print print_matrix(ident(n2))
 print print_matrix(matrix_mult(n2,n))

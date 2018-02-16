@@ -3,26 +3,13 @@ from matrix import *
 
 def add_edge( matrix, x0, y0, z0, x1, y1, z1 ):
     #Essentially just adding two points to matrix
-    result=add_point(matrix, x0, y0, z0)
-    result=add_point(result, x1, y1, z1)
+    add_point(matrix, x0, y0, z0)
+    add_point(matrix, x1, y1, z1)
     #same # of rows, 2 more cols
-    return result
 
 def add_point( matrix, x, y, z=0 ):
     #same # of rows, 1 more col
-    result=new_matrix(len(matrix[0]),len(matrix)+1)
-    for r in range(len(matrix)+1):
-        for c in range(len(matrix[0])):
-            if r==len(matrix):
-                if c==0:
-                    result[r][c]=x
-                elif c==1:
-                    result[r][c]=y
-                else:
-                    result[r][c]=z
-            else:
-                result[r][c]=matrix[r][c]
-    return result
+    matrix.append([x,y,z])
 
 def draw_line( x0, y0, x1, y1, screen, color ):
     x=x0
@@ -115,7 +102,9 @@ def draw_lines( matrix, screen, color ):
     if cols==2:
         draw_line(a[0][0], a[0][1], a[1][0], a[1][1], screen, color)
     elif cols>2:
-        for i in range(cols-1):
+        i=0
+        while(i<cols):
             draw_line(a[i][0],a[i][1],a[i+1][0],a[i+1][1],screen,color)
+            i+=2
 
             

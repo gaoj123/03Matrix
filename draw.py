@@ -1,37 +1,12 @@
 from display import *
-from matrix2 import *
-
-
-def draw_lines( matrix, screen, color ):
-    pass
+from matrix import *
 
 def add_edge( matrix, x0, y0, z0, x1, y1, z1 ):
+    #Essentially just adding two points to matrix
+    result=add_point(matrix, x0, y0, z0)
+    result=add_point(result, x1, y1, z1)
     #same # of rows, 2 more cols
-    result=new_matrix(len(matrix[0]),len(matrix)+2)
-    for r in range(len(matrix)+2):
-        for c in range(len(matrix[0])):
-            if r==len(matrix):
-                if c==0:
-                    result[r][c]=x0
-                elif c==1:
-                    result[r][c]=y0
-                else:
-                    result[r][c]=z0
-            elif r==(len(matrix)+1):
-                if c==0:
-                    result[r][c]=x1
-                elif c==1:
-                    result[r][c]=y1
-                else:
-                    result[r][c]=z1
-            else:
-                result[r][c]=matrix[r][c]
     return result
-
-n=matrix()
-#n2=matrix2()
-print_matrix(n)
-#print print_matrix(add_edge(n,1,2,3,4,5,6))
 
 def add_point( matrix, x, y, z=0 ):
     #same # of rows, 1 more col
@@ -48,8 +23,6 @@ def add_point( matrix, x, y, z=0 ):
             else:
                 result[r][c]=matrix[r][c]
     return result
-
-print print_matrix(add_point(n,4,6,7))
 
 def draw_line( x0, y0, x1, y1, screen, color ):
     x=x0
@@ -135,4 +108,14 @@ def draw_line( x0, y0, x1, y1, screen, color ):
                 smallX+=1
                 y-=1
             
+            
+def draw_lines( matrix, screen, color ):
+    a=matrix
+    cols=len(a)
+    if cols==2:
+        draw_line(a[0][0], a[0][1], a[1][0], a[1][1], screen, color)
+    elif cols>2:
+        for i in range(cols-1):
+            draw_line(a[i][0],a[i][1],a[i+1][0],a[i+1][1],screen,color)
+
             
